@@ -33,10 +33,6 @@ Economic disadvantage is a global problem. Several households, stores dump basic
 **Required Must-have Stories**
 
 * User login (using signin or signup) to access account
-* Users can be catagorized in to three parts
-    a) Direct recipient
-    b) Middleman: Who can help the recipient who don't have app to connect with the donor 
-    c) Donor
 
 * The user (recipient or middle man) will check any user (Donor) in particular in his location already posted that they have similar stuff. 
 
