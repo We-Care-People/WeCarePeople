@@ -103,10 +103,71 @@ Economic disadvantage is a global problem. Several households, stores dump basic
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+Post 
+|Property|Type|Description|
+|---|---|---|
+|User|Pointer to User|image author|
+|postId|String|unique id for the user post (default field)|
+|item|Item|Image item|
+|itemQuantity|String|Image item|
+|likesCount|Integer|likes|
+|Situation|Boolean|taken or not|
+|Location|String|Location of post|
+|createdAt|DateTime|date when post is created (default field)|
+|updatedAt|DateTime|date when post is created (default field)|
+
+Cart
+|Property|Type|Description|
+|---|---|---|
+|item|List<Item>|Image item|
+
+Item
+|Property|Type|Description|
+|---|---|---|
+|id|String|id of item|
+|Name|String|name of item|
+|image|File|image of item|
+|category|pointer|category of item|
+|description|String|des|
+|Situation|Boolean|taken or not|
+
+|createdAt|DateTime|date when post is created (default field)|
+|updatedAt|DateTime|date when post is created (default field)|
+
+User
+|Property|Type|Description|
+|---|---|---|
+|id|String|id of person|
+|username|String|username|
+|password|String|password|
+|Name|String|name of person|
+|image|File|image of person|
+|donated Time // only for donator|number|donated time|
+|Email|String|email|
+|Location|String|Location of user|
+
+
+Categories
+|Property|Type|Description|
+|---|---|---|
+|id|String|id of person|
+|name|String|username|
+|image|String|password|
+
+
+
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+Home:
+Post:
+- Get request - get a list of post about the items.
+- Post request - create the post about the items.
+- Delete request - delete the post about the items.
+- Update request - update the post.
+
+Cart:
+Item:
+- post request - create item
+- get request - get item
+- update request - updates items in the cart
