@@ -128,7 +128,6 @@ Item
 |category|pointer|category of item|
 |description|String|des|
 |Situation|Boolean|taken or not|
-
 |createdAt|DateTime|date when post is created (default field)|
 |updatedAt|DateTime|date when post is created (default field)|
 
