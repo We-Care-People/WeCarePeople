@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "875049902863",
+    "firebase_url": "https://we-care-people.firebaseio.com",
+    "project_id": "we-care-people",
+    "storage_bucket": "we-care-people.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875049902863:android:df169655d570608631147a",
+        "android_client_info": {
+          "package_name": "com.ducpham.wecarepeople"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875049902863-6edrd06p2ldd8vuj5rjb9aip1ifcu704.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-2k_y4n1FFRfdCEqvwsSKIsydocWlwVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875049902863-6edrd06p2ldd8vuj5rjb9aip1ifcu704.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
