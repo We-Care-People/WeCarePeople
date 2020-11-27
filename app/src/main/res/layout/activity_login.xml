@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/weCarePeopleLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/colorSignup"
+        android:text="WeCarePeople" />
+
+    <EditText
+        android:id="@+id/userNameLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:layout_below="@+id/weCarePeopleLogin"
+        android:layout_marginTop="50dp"
+        android:inputType="textPersonName"
+        android:hint="UserName/Email" />
+
+    <EditText
+        android:id="@+id/passwordLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/userNameLogin"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Password"/>
+
+    <Button
+        android:id="@+id/signinBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordLogin"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorSignup"
+        android:textColor="@color/colorWhite"
+        android:text="Sign in" />
+
+    <TextView
+        android:id="@+id/signupBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signinBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:text="Sign up" />
+
+</RelativeLayout>
