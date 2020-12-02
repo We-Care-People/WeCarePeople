@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">We Care People</string>
+    <string name="auth_failed">Anthentic Failed</string>
+    <string name="sign_up_error_messge">Signup Failed</string>
+    <string name="sign_in_error_messge">Please put in your email and password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

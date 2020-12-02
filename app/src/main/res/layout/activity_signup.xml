@@ -17,7 +17,7 @@
         android:text="WeCarePeople" />
 
     <EditText
-        android:id="@+id/userNameSignup"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -28,13 +28,13 @@
         android:hint="UserName/Email" />
 
     <EditText
-        android:id="@+id/passwordSignup"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/userNameSignup"
+        android:layout_below="@+id/username"
         android:inputType="textPassword"
         android:hint="Password" />
 
@@ -46,7 +46,7 @@
         android:inputType="textPersonName"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/passwordSignup"
+        android:layout_below="@+id/password"
         android:hint="Name" />
 
     <EditText

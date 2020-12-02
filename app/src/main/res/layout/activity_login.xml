@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".Login.LoginActivity">
 
     <TextView
         android:id="@+id/weCarePeopleLogin"
@@ -17,7 +17,7 @@
         android:text="WeCarePeople" />
 
     <EditText
-        android:id="@+id/userNameLogin"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -28,11 +28,11 @@
         android:hint="UserName/Email" />
 
     <EditText
-        android:id="@+id/passwordLogin"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/userNameLogin"
+        android:layout_below="@+id/username"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPassword"
@@ -42,7 +42,7 @@
         android:id="@+id/signinBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordLogin"
+        android:layout_below="@+id/password"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:background="@color/colorSignup"
