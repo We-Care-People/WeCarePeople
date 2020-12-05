@@ -1,4 +1,4 @@
-package com.ducpham.wecarepeople.Main.Fragments.CartFragment;
+package com.ducpham.wecarepeople.Main.Fragments.CartFragment.AddService;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,7 +45,6 @@ public class AddToCartActivity extends AppCompatActivity {
     File photoFile;
     private StorageReference mStorageRef;
     private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
     private Uri imageData;
 
     @Override
@@ -57,7 +56,6 @@ public class AddToCartActivity extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference().child("images/");
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
       //  data = new Data(CartFragment.this);
 
         binding.add.setOnClickListener(new View.OnClickListener() {
@@ -88,17 +86,14 @@ public class AddToCartActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             String url = uri.toString();
-                            Map<String,Object> cartItem = new HashMap<>();
-                            cartItem.put("name",binding.name.getText().toString());
-                            cartItem.put("category",binding.category.getText().toString());
-                            cartItem.put("description",binding.description.getText().toString());
-                            cartItem.put("situation",binding.situtaion.getText().toString());
-                            cartItem.put("count",Integer.parseInt(binding.count.getText().toString()));
-                            cartItem.put("url",url);
-                            cartItem.put("userId",mAuth.getCurrentUser().getUid());
-                           // cartItemService.createCartItem(db,mAuth,cartItem);
                             Intent intent = new Intent();
-                            Parcelable wrapped = Parcels.wrap(cartItem);
+                            Parcelable wrapped = Parcels.wrap(new CartItem(mAuth.getCurrentUser().getUid(),
+                                    binding.name.getText().toString(),
+                                    binding.category.getText().toString(),
+                                    binding.description.getText().toString(),
+                                    binding.situtaion.getText().toString(),
+                                    Integer.parseInt(binding.count.getText().toString()),
+                                    url));
                             intent.putExtra("item",wrapped);
                             setResult(RESULT_OK,intent);
                             finish();

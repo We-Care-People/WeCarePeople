@@ -1,7 +1,6 @@
 package com.ducpham.wecarepeople.Main.Fragments.CartFragment;
 
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,23 +14,22 @@ import com.ducpham.wecarepeople.R;
 import com.ducpham.wecarepeople.databinding.ItemCartBinding;
 import com.ducpham.wecarepeople.model.CartItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
-    Context context;
     List<CartItem> cartList;
-    Data data;
+    Listener listener;
 
-    public CartAdapter(Context context, List<CartItem> cartList, Data data){
-        this.context = context;
+    public CartAdapter(Listener listener, List<CartItem> cartList){
+        this.listener = listener;
         this.cartList = cartList;
-        this.data = data;
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_cart,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -39,9 +37,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CartItem cartItem = cartList.get(position);
-        Glide.with(context).asBitmap().load(cartItem.getImageUrl()).into(holder.binding.itemImage);
+        Glide.with(holder.binding.getRoot().getContext()).asBitmap().load(cartItem.getImageUrl()).into(holder.binding.itemImage);
         holder.binding.name.setText(cartItem.getName());
-        holder.binding.description.setText(cartItem.getDes());
+        holder.binding.description.setText(cartItem.getDescription());
         holder.binding.situtaion.setText(cartItem.getSituation());
         holder.binding.category.setText(cartItem.getCategory());
         holder.binding.count.setText(String.valueOf(cartItem.getCount()));
@@ -51,15 +49,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 goneHandle(cartItem.getItemId());
             }
         });
-        Glide.with(context).load(cartItem.getImageUrl()).into(holder.binding.itemImage);
     }
-
     @Override
     public int getItemCount() {
         return cartList.size();
     }
     public void goneHandle(String id){
-        data.deleteItem(id);
+        listener.getListSuccess(id);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -68,5 +64,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             super(itemView);
             binding = ItemCartBinding.bind(itemView);
         }
+    }
+    public interface Listener{
+        void getListSuccess(String id);
     }
 }

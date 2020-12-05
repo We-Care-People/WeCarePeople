@@ -15,11 +15,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 // need interface
 public class Data {
@@ -31,7 +29,6 @@ public class Data {
     private final Listener listener;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
-    StorageReference mStorageRef;
 
     public Data(Listener listerner){
         this.db = FirebaseFirestore.getInstance();
@@ -56,7 +53,7 @@ public class Data {
                             String des = document.get("description").toString();
                             String sit = document.get("situation").toString();
                             int count = Integer.parseInt(document.get("count").toString());
-                            String imageUrl = document.get("url").toString();
+                            String imageUrl = document.get("imageUrl").toString();
                             String userId = document.get("userId").toString();
                             CartItem cartItem= new CartItem(userId,itemId,name,category,des,sit,count,imageUrl);
                             Log.d(TAG,"Call Data Success");
@@ -69,7 +66,6 @@ public class Data {
                 }
             }
         });
-        Log.d(TAG,String.valueOf(list.size()));
     }
 
     public void deleteItem(String itemId){
@@ -79,12 +75,13 @@ public class Data {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Log.d(TAG,"Success");
+                getCartItems();
             }
         });
-        getCartItems();
+
     }
 
-    public void addItem(Map<String, Object> item){
+    public void addItem(CartItem item){
         db.collection("CartItems").document(mAuth.getUid()).collection("items")
                 .add(item)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

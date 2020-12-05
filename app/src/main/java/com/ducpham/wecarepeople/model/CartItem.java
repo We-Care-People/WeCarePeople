@@ -8,7 +8,7 @@ public class CartItem {
     String itemId;
     String name;
     String category;
-    String des;
+    String description;
     String situation;
     int count;
     String imageUrl;
@@ -21,12 +21,21 @@ public class CartItem {
         this.itemId = itemId;
         this.name = name;
         this.category = category;
-        this.des = des;
+        this.description = des;
         this.situation = situation;
         this.count = count;
         this.imageUrl = imageUrl;
     }
+    public CartItem(String userId,String name, String category, String des, String situation, int count, String imageUrl){
+        this.userId = userId;
+        this.name = name;
+        this.category = category;
+        this.description = des;
+        this.situation = situation;
+        this.count = count;
+        this.imageUrl = imageUrl;
 
+    }
 
     public String getUserId() {
         return userId;
@@ -40,8 +49,8 @@ public class CartItem {
         return category;
     }
 
-    public String getDes() {
-        return des;
+    public String getDescription() {
+        return description;
     }
 
     public String getSituation() {

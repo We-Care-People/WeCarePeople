@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main.Fragments.CartFragment.AddToCartActivity"></activity>
+        <activity android:name=".Main.Fragments.CartFragment.AddService.AddToCartActivity"></activity>
         <activity android:name=".Signup.SignupActivity" />
         <activity android:name=".Login.LoginActivity">
 

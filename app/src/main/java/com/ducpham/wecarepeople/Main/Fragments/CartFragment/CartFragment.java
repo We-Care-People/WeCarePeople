@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -16,9 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ducpham.wecarepeople.Main.Data.Data;
-import com.ducpham.wecarepeople.R;
+import com.ducpham.wecarepeople.Main.Fragments.CartFragment.AddService.AddToCartActivity;
 import com.ducpham.wecarepeople.databinding.FragmentCartBinding;
-import com.ducpham.wecarepeople.databinding.FragmentUserBinding;
 import com.ducpham.wecarepeople.model.CartItem;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,7 +29,7 @@ import java.util.Map;
 import static android.app.Activity.RESULT_OK;
 
 
-public class CartFragment extends Fragment implements Data.Listener{
+public class CartFragment extends Fragment implements Data.Listener, CartAdapter.Listener{
     static final String TAG = "CartFragment";
     static final int REQUEST_CODE = 398;
     FragmentCartBinding binding;
@@ -65,7 +63,7 @@ public class CartFragment extends Fragment implements Data.Listener{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         cartList = new ArrayList<>();
-        cartAdapter = new CartAdapter(getContext(),cartList,data);
+        cartAdapter = new CartAdapter(this,cartList);
         binding.recycleView.setAdapter(cartAdapter);
         binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.floatingButton.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +75,7 @@ public class CartFragment extends Fragment implements Data.Listener{
     }
 
     public void addItem(){
-        Intent intent = new Intent(getContext(),AddToCartActivity.class);
+        Intent intent = new Intent(getContext(), AddToCartActivity.class);
         startActivityForResult(intent,REQUEST_CODE);
     }
 
@@ -86,7 +84,7 @@ public class CartFragment extends Fragment implements Data.Listener{
         Log.d(TAG, "start");
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
-            Map<String, Object> item =  Parcels.unwrap(data.getParcelableExtra("item"));
+            CartItem item =  Parcels.unwrap(data.getParcelableExtra("item"));
             this.data.addItem(item);
         }
 
@@ -104,4 +102,8 @@ public class CartFragment extends Fragment implements Data.Listener{
         cartAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void getListSuccess(String id) {
+        data.deleteItem(id);
+    }
 }
