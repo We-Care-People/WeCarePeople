@@ -1,13 +1,18 @@
 package com.ducpham.wecarepeople.model;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class User {
+    String userId;
     String name;
     String location;
 
     public User(){
 
     }
-    public User(String name, String location){
+    public User(String userId,String name, String location){
+        this.userId = userId;
         this.name = name;
         this.location = location;
     }
@@ -26,5 +31,13 @@ public class User {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

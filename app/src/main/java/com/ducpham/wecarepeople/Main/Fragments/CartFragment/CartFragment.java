@@ -18,6 +18,8 @@ import com.ducpham.wecarepeople.Main.Data.Data;
 import com.ducpham.wecarepeople.Main.Fragments.CartFragment.AddService.AddToCartActivity;
 import com.ducpham.wecarepeople.databinding.FragmentCartBinding;
 import com.ducpham.wecarepeople.model.CartItem;
+import com.ducpham.wecarepeople.model.Message;
+import com.ducpham.wecarepeople.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.parceler.Parcels;
@@ -98,8 +100,17 @@ public class CartFragment extends Fragment implements Data.Listener, CartAdapter
         // Log.d(TAG,String.valueOf(Data.getInstance().itemList()));
         cartList.clear();
         cartList.addAll(list);
-        Log.d(TAG,String.valueOf(cartList.size()));
         cartAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void getUserSuccess(List<User> list) {
+
+    }
+
+    @Override
+    public void getMessageSuccess(List<Message> list) {
+
     }
 
     @Override

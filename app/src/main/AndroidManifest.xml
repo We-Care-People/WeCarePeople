@@ -13,17 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main.Fragments.CartFragment.AddService.AddToCartActivity"></activity>
+        <activity android:name=".Main.Fragments.ChatFragment.DirectMessage.DirectMessageActivity"></activity>
+        <activity android:name=".Main.Fragments.CartFragment.AddService.AddToCartActivity" />
         <activity android:name=".Signup.SignupActivity" />
         <activity android:name=".Login.LoginActivity">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main.MainActivity"></activity>
+        <activity android:name=".Main.MainActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.codepath.fileprovider"
@@ -33,7 +34,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider" />
         </provider>
-
     </application>
 
 </manifest>

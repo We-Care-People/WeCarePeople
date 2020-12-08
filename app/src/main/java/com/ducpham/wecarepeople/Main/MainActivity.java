@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.ducpham.wecarepeople.Main.Fragments.CartFragment.CartFragment;
+import com.ducpham.wecarepeople.Main.Fragments.ChatFragment.ChatFragment;
 import com.ducpham.wecarepeople.Main.Fragments.PostFragment.PostFragment;
 import com.ducpham.wecarepeople.Main.Fragments.UserFragment.UserFragment;
 import com.ducpham.wecarepeople.R;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         DocumentReference documentReference = db.collection("Users").document(firebaseUser.getUid());
         userInfoService = new UserInfoService(documentReference,this,binding);
-
+        //setSupportActionBar(binding.toolbar);
 
         User user = userInfoService.getUser();
         Log.d(TAG,firebaseUser.getUid());
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_cart:
                         fragment = new CartFragment();
+                        break;
+                    case R.id.action_chat:
+                        fragment = new ChatFragment();
                         break;
                     default:
                         fragment = new UserFragment();

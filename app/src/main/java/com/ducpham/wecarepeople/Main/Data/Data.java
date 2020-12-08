@@ -6,6 +6,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.ducpham.wecarepeople.model.CartItem;
+import com.ducpham.wecarepeople.model.Message;
+import com.ducpham.wecarepeople.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +26,10 @@ public class Data {
 
     public interface Listener {
         void getCartItemSuccess(List<CartItem> list);
+
+        void getUserSuccess(List<User> list);
+
+        void getMessageSuccess(List<Message> list);
     }
     static final String TAG = "Data";
     private final Listener listener;
@@ -82,6 +88,7 @@ public class Data {
     }
 
     public void addItem(CartItem item){
+
         db.collection("CartItems").document(mAuth.getUid()).collection("items")
                 .add(item)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -97,6 +104,77 @@ public class Data {
                     }
                 });
         getCartItems();
+    }
+
+    public void getUsers(){
+        final List<User> list = new ArrayList<>();
+        db.collection("Users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        list.add(new User(document.getId(),document.get("name").toString(),document.get("location").toString()));
+                    }
+                    listener.getUserSuccess(list);
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+    }
+
+    public void sendMessage(final Message message){
+        db.collection("Chat")
+                .document(message.getSender())
+                .collection("chat")
+                .document(message.getReceiver())
+                .collection("detail")
+                .add(message).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+                Log.d(TAG,"Success");
+                getMessage(message.getSender(),message.getReceiver());
+            }
+        });
+        db.collection("Chat")
+                .document(message.getReceiver())
+                .collection("chat")
+                .document(message.getSender())
+                .collection("detail")
+                .add(message).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+                Log.d(TAG,"Success");
+            }
+        });
+    }
+
+    public void getMessage(final String curUserId, final String conUserId){
+        final List<Message> list = new ArrayList<>();
+        db.collection("Chat").document(curUserId)
+                .collection("chat")
+                .document(conUserId)
+                .collection("detail").orderBy("date")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        list.add(new Message(document.getId()
+                                ,document.get("sender").toString()
+                                ,document.get("receiver").toString()
+                                ,document.get("message").toString()
+                                ,document.getDate("date")));
+                    }
+                    Log.d(TAG,curUserId);
+                    Log.d(TAG,conUserId);
+                    Log.d(TAG,String.valueOf(list.size()));
+                    listener.getMessageSuccess(list);
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
     }
 
 
