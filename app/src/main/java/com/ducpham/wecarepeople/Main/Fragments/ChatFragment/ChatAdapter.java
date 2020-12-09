@@ -21,15 +21,15 @@ import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     List<User> users;
-    Context context;
-    public ChatAdapter(List<User> users){
+    Listener listener;
+    public ChatAdapter(Listener listener, List<User> users){
+        this.listener = listener;
         this.users = users;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -43,9 +43,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         holder.binding.itemChatContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DirectMessageActivity.class);
-                intent.putExtra("user", Parcels.wrap(tempUser));
-                context.startActivity(intent);
+                listener.navigateToDirectMessage(tempUser);
             }
         });
     }
@@ -55,11 +53,21 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         return users.size();
     }
 
+    public void getUsers(List<User> list){
+        this.users.clear();
+        this.users.addAll(list);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         ItemChatBinding binding;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = ItemChatBinding.bind(itemView);
         }
+    }
+
+    public interface Listener{
+        void navigateToDirectMessage(User tempUser);
     }
 }

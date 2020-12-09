@@ -1,5 +1,6 @@
 package com.ducpham.wecarepeople.Main.Fragments.ChatFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.ducpham.wecarepeople.Main.Data.Data;
 import com.ducpham.wecarepeople.Main.Fragments.CartFragment.CartAdapter;
+import com.ducpham.wecarepeople.Main.Fragments.ChatFragment.DirectMessage.DirectMessageActivity;
 import com.ducpham.wecarepeople.R;
 import com.ducpham.wecarepeople.databinding.FragmentCartBinding;
 import com.ducpham.wecarepeople.databinding.FragmentChatBinding;
@@ -21,11 +23,13 @@ import com.ducpham.wecarepeople.model.CartItem;
 import com.ducpham.wecarepeople.model.Message;
 import com.ducpham.wecarepeople.model.User;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ChatFragment extends Fragment implements Data.Listener{
+public class ChatFragment extends Fragment implements Data.Listener, ChatAdapter.Listener{
     FragmentChatBinding binding;
     ChatAdapter chatAdapter;
     List<User> users;
@@ -55,16 +59,14 @@ public class ChatFragment extends Fragment implements Data.Listener{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         users = new ArrayList<>();
-        chatAdapter = new ChatAdapter(users);
+        chatAdapter = new ChatAdapter(this,users);
         binding.recycleView.setAdapter(chatAdapter);
         binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override
     public void getUserSuccess(List<User> list) {
-        this.users.clear();
-        this.users.addAll(list);
-        this.chatAdapter.notifyDataSetChanged();
+        this.chatAdapter.getUsers(list);
     }
 
     @Override
@@ -75,5 +77,18 @@ public class ChatFragment extends Fragment implements Data.Listener{
     @Override
     public void getCartItemSuccess(List<CartItem> list) {
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    @Override
+    public void navigateToDirectMessage(User tempUser) {
+        Intent intent = new Intent(getContext(), DirectMessageActivity.class);
+        intent.putExtra("user", Parcels.wrap(tempUser));
+        getContext().startActivity(intent);
     }
 }

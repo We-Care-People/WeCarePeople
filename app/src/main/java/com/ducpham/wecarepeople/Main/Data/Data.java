@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.ducpham.wecarepeople.R;
 import com.ducpham.wecarepeople.model.CartItem;
 import com.ducpham.wecarepeople.model.Message;
 import com.ducpham.wecarepeople.model.User;
@@ -124,11 +125,11 @@ public class Data {
     }
 
     public void sendMessage(final Message message){
-        db.collection("Chat")
+        db.collection(String.valueOf(R.string.chat_collection_outside))
                 .document(message.getSender())
-                .collection("chat")
+                .collection(String.valueOf(R.string.chat_collection_inside))
                 .document(message.getReceiver())
-                .collection("detail")
+                .collection(String.valueOf(R.string.detail_collection))
                 .add(message).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -136,11 +137,11 @@ public class Data {
                 getMessage(message.getSender(),message.getReceiver());
             }
         });
-        db.collection("Chat")
+        db.collection(String.valueOf(R.string.chat_collection_outside))
                 .document(message.getReceiver())
-                .collection("chat")
+                .collection(String.valueOf(R.string.chat_collection_inside))
                 .document(message.getSender())
-                .collection("detail")
+                .collection(String.valueOf(R.string.detail_collection))
                 .add(message).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -151,10 +152,10 @@ public class Data {
 
     public void getMessage(final String curUserId, final String conUserId){
         final List<Message> list = new ArrayList<>();
-        db.collection("Chat").document(curUserId)
-                .collection("chat")
+        db.collection(String.valueOf(R.string.chat_collection_outside)).document(curUserId)
+                .collection(String.valueOf(R.string.chat_collection_inside))
                 .document(conUserId)
-                .collection("detail").orderBy("date")
+                .collection(String.valueOf(R.string.detail_collection)).orderBy("date")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

@@ -19,7 +19,6 @@ public class DirectMessageAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final int SENDER = 0, RECEIVER = 1;
     List<Message> messageList;
     String userId;
-    Context context;
 
 
     public DirectMessageAdapter(String userId, List<Message> messageList){
@@ -29,9 +28,8 @@ public class DirectMessageAdapter extends RecyclerView.Adapter<RecyclerView.View
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
         RecyclerView.ViewHolder viewHolder;
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         switch (viewType) {
             case SENDER:
@@ -66,6 +64,11 @@ public class DirectMessageAdapter extends RecyclerView.Adapter<RecyclerView.View
         return messageList.size();
     }
 
+    public void addAll(List<Message> list){
+        this.messageList.clear();
+        this.messageList.addAll(list);
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemViewType(int position) {
         Message message = messageList.get(position);

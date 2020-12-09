@@ -74,8 +74,6 @@ public class DirectMessageActivity extends AppCompatActivity implements Data.Lis
 
     @Override
     public void getMessageSuccess(List<Message> list) {
-        this.list.clear();
-        this.list.addAll(list);
-        adapter.notifyDataSetChanged();
+        adapter.addAll(list);
     }
 }

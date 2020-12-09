@@ -5,4 +5,7 @@
     <string name="sign_in_error_messge">Please put in your email and password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chat_collection_outside">Chat</string>
+    <string name="chat_collection_inside">chat</string>
+    <string name="detail_collection">detail</string>
 </resources>
