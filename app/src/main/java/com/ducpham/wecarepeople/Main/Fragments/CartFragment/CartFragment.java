@@ -19,6 +19,7 @@ import com.ducpham.wecarepeople.Main.Fragments.CartFragment.AddService.AddToCart
 import com.ducpham.wecarepeople.databinding.FragmentCartBinding;
 import com.ducpham.wecarepeople.model.CartItem;
 import com.ducpham.wecarepeople.model.Message;
+import com.ducpham.wecarepeople.model.Post;
 import com.ducpham.wecarepeople.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -112,6 +113,17 @@ public class CartFragment extends Fragment implements Data.Listener, CartAdapter
     public void getMessageSuccess(List<Message> list) {
 
     }
+
+    @Override
+    public void getPostSuccess(List<Post> postList) {
+
+    }
+
+    @Override
+    public void getUser(User user) {
+
+    }
+
 
     @Override
     public void getListSuccess(String id) {

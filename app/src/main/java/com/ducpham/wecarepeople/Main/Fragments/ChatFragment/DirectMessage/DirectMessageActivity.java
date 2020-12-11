@@ -9,6 +9,7 @@ import com.ducpham.wecarepeople.R;
 import com.ducpham.wecarepeople.databinding.ActivityDirectMessageBinding;
 import com.ducpham.wecarepeople.model.CartItem;
 import com.ducpham.wecarepeople.model.Message;
+import com.ducpham.wecarepeople.model.Post;
 import com.ducpham.wecarepeople.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -75,5 +76,15 @@ public class DirectMessageActivity extends AppCompatActivity implements Data.Lis
     @Override
     public void getMessageSuccess(List<Message> list) {
         adapter.addAll(list);
+    }
+
+    @Override
+    public void getPostSuccess(List<Post> postList) {
+
+    }
+
+    @Override
+    public void getUser(User user) {
+
     }
 }

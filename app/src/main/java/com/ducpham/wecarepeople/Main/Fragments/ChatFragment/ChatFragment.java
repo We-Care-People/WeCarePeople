@@ -21,6 +21,7 @@ import com.ducpham.wecarepeople.databinding.FragmentChatBinding;
 import com.ducpham.wecarepeople.databinding.FragmentUserBinding;
 import com.ducpham.wecarepeople.model.CartItem;
 import com.ducpham.wecarepeople.model.Message;
+import com.ducpham.wecarepeople.model.Post;
 import com.ducpham.wecarepeople.model.User;
 
 import org.parceler.Parcels;
@@ -73,6 +74,17 @@ public class ChatFragment extends Fragment implements Data.Listener, ChatAdapter
     public void getMessageSuccess(List<Message> list) {
 
     }
+
+    @Override
+    public void getPostSuccess(List<Post> postList) {
+
+    }
+
+    @Override
+    public void getUser(User user) {
+
+    }
+
 
     @Override
     public void getCartItemSuccess(List<CartItem> list) {
