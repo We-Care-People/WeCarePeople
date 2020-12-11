@@ -1,5 +1,3 @@
-Original App Design Project - README Template
-===
 
 # We Care People 
 
@@ -32,17 +30,13 @@ Economic disadvantage is a global problem. Several households, stores dump basic
 
 **Required Must-have Stories**
 
-* [X] User login (using signin or signup) to access account
-* [ ] The user (recipient or middle man) will check any user (Donor) in particular in his location already posted that they have similar stuff. 
-* [ ] User (recipient) update what they need in a list of user profile
-* [ ] User (Update) what they have in a list of user profile
-* [ ] User (recipient) take a donate, that feed go to the board.
+* [X] User login (using signin or signup) to access account 
+* [X] User (Update) what they have in a list of user profile
 * [ ] Users can post about the items they want somebody to pick up.
-* [ ] If User is not comfortable in sharing their address, a set up option for dropping off the item can be arranged.
 
 **Optional Nice-to-have Stories**
 
-* Direct message
+* [X]Direct message
 
 
 ### 2. Screen Archetypes
