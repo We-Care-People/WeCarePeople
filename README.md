@@ -32,7 +32,7 @@ Economic disadvantage is a global problem. Several households, stores dump basic
 
 * [X] User login (using signin or signup) to access account 
 * [X] User (Update) what they have in a list of user profile
-* [ ] Users can post about the items they want somebody to pick up.
+* [X] Users can post about the items they want somebody to pick up.
 
 **Optional Nice-to-have Stories**
 
