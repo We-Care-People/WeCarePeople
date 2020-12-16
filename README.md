@@ -1,6 +1,11 @@
 
 # We Care People 
 
+## Demo:
+<img src='https://github.com/We-Care-People/WeCarePeople/blob/master/wecarepeoplePost.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/We-Care-People/WeCarePeople/blob/master/wecarepeopleCart2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/We-Care-People/WeCarePeople/blob/master/wecarepeopleChat.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
@@ -159,5 +164,5 @@ Item:
 - get request - get item
 - update request - updates items in the cart
 
-Demo:
+
 
